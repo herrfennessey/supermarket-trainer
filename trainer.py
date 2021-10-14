@@ -74,6 +74,7 @@ class Trainer:
 
         max_len = 0
         # For every sentence...
+        print('Tokenizing text to find max length')
         for x, sent in enumerate(sentences):
             # Tokenize the text and add `[CLS]` and `[SEP]` tokens.
             input_ids = self.tokenizer.encode(sent, add_special_tokens=True)
@@ -86,6 +87,7 @@ class Trainer:
         input_ids = []
         attention_masks = []
 
+        print("tokenizing and adding it to input_ids and attention masks")
         # For every sentence...
         for sent in sentences:
             # `encode_plus` will:
