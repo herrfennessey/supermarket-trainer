@@ -1,3 +1,4 @@
+import argparse
 import datetime
 import tempfile
 import time
@@ -10,6 +11,11 @@ from transformers import DistilBertTokenizer, DistilBertForSequenceClassificatio
 
 from cloud_storage_dao import CloudStorageDao
 from training_data_fetcher import TrainingDataFetcher
+
+parser = argparse.ArgumentParser(description="My parser")
+parser.add_argument('--no-cuda', dest='cuda', action='store_false', default=True,
+                    help='Should I use not use GPU acceleration (CUDA)?')
+parser.add_argument('-e', dest='epoch', type=int, default=2, help='How many epochs should I train? Default = 2')
 
 
 class Trainer:
@@ -392,5 +398,6 @@ class Trainer:
 
 
 if __name__ == "__main__":
-    trainer = Trainer(2, False)
+    args = parser.parse_args()
+    trainer = Trainer(args.epoch, args.cuda)
     trainer.train()
