@@ -3,13 +3,14 @@ import os
 
 from google.cloud import storage
 
-MODEL_BUCKET = "shopping-classifier-test"
+PROJECT_NAME = "sf-dev-conf"
+MODEL_BUCKET = "sf-dev-conf-assets"
 MODEL_DIRECTORY = "model"
 
 
 class CloudStorageDao:
     def __init__(self):
-        self.client = storage.Client(project='shopping-classifier')
+        self.client = storage.Client(project=PROJECT_NAME)
 
     @staticmethod
     def _copy_local_directory_to_gcs(local_path, bucket, gcs_path):
