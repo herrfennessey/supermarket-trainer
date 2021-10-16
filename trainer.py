@@ -50,6 +50,7 @@ class Trainer:
             print('created temporary directory', tmpdirname)
             model_to_save = model.module if hasattr(model, 'module') else model
             model_to_save.save_pretrained(tmpdirname)
+            self.tokenizer.save_pretrained(tmpdirname)
             self.cloud_storage_dao.copy_to_bucket(tmpdirname)
 
     def train(self):
